@@ -54,10 +54,10 @@ object Main {
     //Req 4 :  the average and standard deviation of the length of tweets.
     //1st calculating avg ...
     print("\n \n the average and standard deviation of the length of tweets ")
-    val Length = FilterdRDD.map { Row =>
-      val text = Row.split(",")(2)
-      val length = text.length
-      (text, length)}
+        val Length = FilterdRDD.map(Row=>{
+    val keyword = Row.split(",")(2).split(" +")
+      (Row.split(",")(2), keyword.length.doubleValue())
+    })
     val avg = (Length.map(_._2).reduce(_+_)) / NumberOfWords
     print(s"\n Average            :  $avg" )
     //2nd calculating SD ...
